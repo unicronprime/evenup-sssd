@@ -21,8 +21,12 @@ offline_credentials_expiration = 0
 [domain/LDAP]
 debug_level = 0x02F0
 id_provider = ldap
-auth_provider = ldap
-chpass_provider = ldap
+auth_provider = <%= scope.lookupvar('sssd::auth_provider') %>
+<% if auth_provider == 'krb5' %>
+krb5_server = <%= scope.lookupvar('sssd::krb5_server') %>
+krb5_realm = <%= scope.lookupvar('sssd::krb5_realm') %>
+<% end %>
+chpass_provider = <%= scope.lookupvar('sssd::auth_provider') %>
 access_provider = ldap
 cache_credentials = true
 ldap_schema = rfc2307

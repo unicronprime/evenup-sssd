@@ -59,6 +59,9 @@ class sssd (
   $ldap_tls_reqcert   = 'demand',
   $ldap_tls_cacert    = '/etc/pki/tls/certs/ca-bundle.crt',
   $logsagent          = '',
+  $auth_provider      = 'ldap',
+  $krb5_server	      = 'example.com',
+  $krb5_realm         = 'EXAMPLE.COM',
 ){
 
   class { 'sssd::install': }
